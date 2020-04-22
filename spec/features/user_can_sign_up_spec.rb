@@ -11,7 +11,7 @@ feature 'user can sign up and log in' do
       click_on "Sign up"
     end
     it 'User should see success message' do
-      fill_in "Name", with: user.name
+      fill_in "Name", with: "Allen"
       fill_in "Email", with: "mufflon@gmail.com"
       fill_in "Password", with: user.password
       fill_in "Password confirmation", with: user.password_confirmation
