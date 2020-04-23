@@ -8,6 +8,9 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates_uniqueness_of :name
 
+  validates :encrypted_password, length: { minimum: 8 }
+  validates :encrypted_password, presence: true
+  
   acts_as_messageable
 
   def mailboxer_name
@@ -17,4 +20,14 @@ class User < ApplicationRecord
   def mailboxer_email(object)
     email
   end
+
+  def mailboxer_password
+    encrypted_password
+  end
+
+  def mailboxer_password_confirmation
+    encrypted_password
+  end
+
+
 end
