@@ -21,13 +21,4 @@ class User < ApplicationRecord
     email
   end
 
-  def mailboxer_password
-    encrypted_password
-  end
-
-  def mailboxer_password_confirmation
-    encrypted_password
-  end
-
-
 end
