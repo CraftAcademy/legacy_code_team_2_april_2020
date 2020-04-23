@@ -12,7 +12,7 @@ gem 'mailboxer'
 gem 'pg', '~> 0.15'
 gem 'puma', '~> 3.7'
 gem 'rake', '~> 11.1', '>= 11.1.2'
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails', '~> 2.1.2'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
