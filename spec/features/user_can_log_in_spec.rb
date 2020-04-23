@@ -15,10 +15,17 @@ feature 'user can log in' do
     end
 
     describe 'user inputs incorrect credentials' do
+      let(:registered_user) {create(:user)}
       it 'user input the wrong password' do 
         fill_in "Email", with: registered_user.email
         fill_in "Password", with: "hammertime"
         click_on "Log in"
+        expect(page).to have_content "Invalid Email or password"
+      end
+
+      it 'user inputs the wrong email' do
+        fill_in "Email", with: "hammertime@mail.com"
+        fill_in "Password", with: registered_user.password
         expect(page).to have_content "Invalid Email or password"
       end
     end
