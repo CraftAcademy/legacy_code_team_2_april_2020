@@ -1,21 +1,16 @@
 feature 'User can send message'do
     let(:sender) { FactoryBot.create(:user, email: 'sender@factory.com', password: "12345678", password_confirmation: "12345678") }
-    let(:receiver) {FactoryBot.create(:user, name: 'Dora', email: 'momo@factory.com', password:"87654321", password_confirmation: "87654321", id: 1) } 
+    let!(:receiver) {FactoryBot.create(:user, name: 'Dora', email: 'momo@factory.com', password:"87654321", password_confirmation: "87654321") } 
     
     context 'with an existing account [Happy path]' do
-        #let(:recepient) { find(:select, from, options).find(:option, 1, options).select_option }
 
         before do   
             login_as(sender, scope: :user)
             visit new_conversation_path
-            #binding.pry
-            #select 1, from: 'select#conversation_recipients.form-control.chosen-select'
-            select find('conversation[recipients][]').value, from: 'conversation[recipients][]'
-            select :receiver, from: 'conversation[recipients][]'
+            select receiver.name, from: 'conversation[recipients][]'
             fill_in 'conversation[body]', with: 'text' 
             fill_in 'conversation[subject]', with: 'text'
             click_on 'Send Message'
-            render 
         end
 
         it 'user should see a success message' do
