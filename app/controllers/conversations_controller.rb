@@ -6,9 +6,23 @@ class ConversationsController < ApplicationController
 
   def create
     recipients = User.where(id: conversation_params[:recipients])
-    conversation = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject]).conversation
-    flash[:success] = 'Your message was successfully sent!'
-    redirect_to conversation_path(conversation)
+    subject = conversation_params[:subject]
+    body = conversation_params[:body]
+
+    if recipients.empty?
+      flash[:error] = 'Add at least one recipient' 
+      render "new"
+    elsif subject.empty?
+      flash[:error] = 'Add a subject' 
+      render "new"
+    elsif body.empty?
+      flash[:error] = 'Add a message'
+      render "new"
+    else
+      conversation = current_user.send_message(recipients, body, subject).conversation
+      flash[:success] = 'Your message was successfully sent!'
+      redirect_to conversation_path(conversation)
+    end
   end
 
   def show
