@@ -20,34 +20,29 @@ feature 'User can send message'do
 
     context 'gets error message [Sad path]' do
         before do
-            visit root_path
-            click_on 'Login'
-            fill_in "user[email]", with: sender.email
-            fill_in "user[password]", with: sender.password
-            click_on 'Log in'
-            click_on 'Inbox'
-            click_on 'Compose'
+            login_as(sender, scope: :user)
+            visit new_conversation_path
         end
         
-        it 'if no recepient is chosen' do
+        it 'if no recipient is chosen' do
             fill_in 'conversation[body]', with: 'text' 
             fill_in 'conversation[subject]', with: 'text'
             click_on 'Send Message'
-            expect(page).not_to have_content "Your message was successfully sent!"
+            expect(page).to have_content "Add at least one recipient"
         end
         
         it 'if no subject is added' do
             select "Dora", from: "conversation[recipients][]"
             fill_in 'conversation[body]', with: 'text' 
             click_on 'Send Message'
-            expect(page).not_to have_content "Your message was successfully sent!"
+            expect(page).to have_content "Add a subject"
         end
         
         it 'if no text is added' do
-            select "Dora", :from => "conversation[recipients][]"
+            select "Dora", from: "conversation[recipients][]"
             fill_in 'conversation[subject]', with: 'text' 
             click_on 'Send Message'
-            expect(page).not_to have_content "Your message was successfully sent!"
+            expect(page).to have_content "Add a message"
         end
     end
 end

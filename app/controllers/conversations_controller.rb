@@ -8,21 +8,22 @@ class ConversationsController < ApplicationController
     recipients = User.where(id: conversation_params[:recipients])
     subject = conversation_params[:subject]
     body = conversation_params[:body]
+
     if recipients.empty?
-      flash[:error] = 'Add a recipient' 
+      flash[:error] = 'Add at least one recipient' 
       render "new"
     elsif subject.empty?
       flash[:error] = 'Add a subject' 
       render "new"
     elsif body.empty?
-      flash[:error] = 'No text added'
+      flash[:error] = 'Add a message'
       render "new"
     else
-     conversation = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject]).conversation
-     flash[:success] = 'Your message was successfully sent!'
-     redirect_to conversation_path(conversation)
+      conversation = current_user.send_message(recipients, body, subject).conversation
+      flash[:success] = 'Your message was successfully sent!'
+      redirect_to conversation_path(conversation)
     end
-   end
+  end
 
   def show
     @receipts = conversation.receipts_for(current_user)
