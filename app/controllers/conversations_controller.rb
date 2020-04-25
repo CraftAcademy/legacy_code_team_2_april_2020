@@ -6,8 +6,12 @@ class ConversationsController < ApplicationController
 
   def create
     recipients = User.where(id: conversation_params[:recipients])
+    subject = conversation_params[:subject]
     if recipients.empty?
       flash[:error] = 'Add a recipient' 
+      render "new"
+    elsif subject.empty?
+      flash[:error] = 'Add a subject' 
       render "new"
     else 
      conversation = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject]).conversation
