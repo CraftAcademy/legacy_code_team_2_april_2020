@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-feature 'User can receieve messages' do
+feature 'User can receieve message' do
   let(:sender) { create(:user, email: 'sender@mail.com') }
   let(:receiver) { create(:user, name: 'reciever', email: 'sender1@mail.com') }
   before do
