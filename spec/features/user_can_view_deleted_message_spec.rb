@@ -15,23 +15,30 @@ feature 'user can view deleted message' do
     before do
       login_as(user, scope: :user)
       visit root_path
-    end
-
-    it 'remove message to trash' do
       visit mailbox_inbox_path
       test = find(class: 'media-body')
       expect(test).to have_content 'Lorem ipsum.'
       click_on 'View'
+      click_on 'Move to trash'
+    end
+
+    # it 'remove message to trash' do
+    #   visit mailbox_inbox_path
+    #   test = find(class: 'media-body')
+    #   expect(test).to have_content 'Lorem ipsum.'
+    #   click_on 'View'
       # accept_alert do
-        click_link('Move to trash')
+      # click_on 'Move to trash'
         # click_button('OK')
       # end
-    end
+    # end
 
     it 'message deleted in trash' do
       visit mailbox_trash_path
+      count = user.mailbox.trash.count
+      expect(count).to eq 1
       # content = find(class: 'media-body')
-      expect(body).to have_content 'Lorem ipsum.'
+      # expect(body).to have_content 'Lorem ipsum.'
     end
   end
 end
