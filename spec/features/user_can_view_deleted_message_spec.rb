@@ -21,7 +21,7 @@ feature 'user can view deleted message' do
       click_on 'Move to trash'
     end
 
-    it 'message deleted in trash' do
+    it 'deleted message shows up in trashbox' do
       visit mailbox_trash_path
       count = user.mailbox.trash.count
       expect(count).to eq 1
