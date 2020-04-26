@@ -8,11 +8,15 @@
 
 [User stories](https://www.pivotaltracker.com/n/projects/2445151)
 
+#### Deployed app:
+
+[Craft Academy Mailboxer](https://leagacycodeteam2april2020.herokuapp.com/)
+
 ### The code:
 
-Application to send and recieve messages to login users.
+Application to send and recieve messages to registered users.
 
-Devise API for the login
+Devise API for signing up and logging in.
 
 ### Dependencies:
 
@@ -42,15 +46,15 @@ rails start
 
 ### Acknowledgement:<br>
 
-Built the structure from this assignment
+Built the structure out of this code base:
 https://github.com/CraftAcademy/legacy_code_team_2_april_2020 <br>
-Also used the Craft Academy, devise and Rails documentation.
+Also used the Craft Academy course material and Devise and Rails documentation.
 
 ### Updates/improvment plans:
 
 - Add unit tests for the conversation
-- Deploy to Heroku
 - Coveralls for test coverage
 - Semaphore setup needs to be fixed
+- Instead of requiring subject and message, user should be asked to confirm sending incomplete message
 
 #### Licensed under MIT license
