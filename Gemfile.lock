@@ -141,7 +141,8 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (4.0.4)
-    puma (3.12.4)
+    puma (4.3.9)
+      nio4r (~> 2.0)
     rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -264,7 +265,7 @@ DEPENDENCIES
   mailboxer
   pg (~> 0.15)
   pry-rails
-  puma (~> 3.7)
+  puma (~> 4.3)
   rails (= 5.1.5)
   rails-html-sanitizer (~> 1.0.4)
   rails_12factor
